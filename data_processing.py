@@ -21,39 +21,40 @@ import numpy as np
 #RandomRotation 类是随机旋转输入图像
 #Grayscale 类是用来将输入图像转成灰度图的
 
+def data():
+    path="data\\class\\lable"
+    batch_size=16
+    workers=3
 
-path="data\\class\\lable\\coal\\0.JPG"
-batch_size=32
-workers=3
-
-train_augmentation = torchvision.transforms.Compose([
-                                                    torchvision.transforms.Resize(256),
-                                                    torchvision.transforms.RandomCrop(224),
-                                                    torchvision.transforms.ToTensor(),
-                                                    ])
-
-
-
-#train_augmentationj=接受到的数据为 PIL.Image.Image，一般为RGB；输出为归一化的数组，opencv读入图像为BGR图像（img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)）
-# img_PIL = PIL.Image.open(path).convert('RGB')
-# img1 = train_augmentation(img_PIL)
-# img_1 = img1.numpy()*255
-# img_1 = img_1.astype('uint8')
-# img_1 = np.transpose(img_1, (1,2,0))      
-# cv2.imshow('img_1', img_1)
-# cv2.waitKey()
-
-trainset = torchvision.datasets.ImageFolder(path,train_augmentation,)
+    train_augmentation = torchvision.transforms.Compose([
+                                                        torchvision.transforms.Resize(256),
+                                                        torchvision.transforms.RandomCrop(224),
+                                                        torchvision.transforms.ToTensor(),
+                                                        ])
 
 
-# # print(trainset.classes) #根据分的文件夹的名字来确定的类别
-# # print(trainset.class_to_idx) #按顺序为这些类别定义索引为0,1...
-# # print(trainset.imgs) #返回从所有文件夹中得到的图片的路径以及其类别
+
+    #train_augmentationj=接受到的数据为 PIL.Image.Image，一般为RGB；输出为归一化的数组，opencv读入图像为BGR图像（img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)）
+    # img_PIL = PIL.Image.open(path).convert('RGB')
+    # img1 = train_augmentation(img_PIL)
+    # img_1 = img1.numpy()*255
+    # img_1 = img_1.astype('uint8')
+    # img_1 = np.transpose(img_1, (1,2,0))      
+    # cv2.imshow('img_1', img_1)
+    # cv2.waitKey()
+
+    trainset = torchvision.datasets.ImageFolder(path,train_augmentation,)
 
 
-# #shuffle是否打乱数据
-# #num_workers数据分为几个线程处理，默认为0
+    # # print(trainset.classes) #根据分的文件夹的名字来确定的类别
+    # # print(trainset.class_to_idx) #按顺序为这些类别定义索引为0,1...
+    # # print(trainset.imgs) #返回从所有文件夹中得到的图片的路径以及其类别
 
-train_loader = torch.utils.data.DataLoader(trainset,
-    batch_size = batch_size, shuffle = True,
-    num_workers = workers, pin_memory = True)
+
+    # #shuffle是否打乱数据
+    # #num_workers数据分为几个线程处理，默认为0
+
+    train_loader = torch.utils.data.DataLoader(trainset,
+        batch_size = batch_size, shuffle = True,
+        num_workers = 0, pin_memory = True)
+    return train_loader,len(trainset)
