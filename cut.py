@@ -61,3 +61,6 @@ image_compose() #调用函数
 
 #In[3]
 print("好好学习")
+
+
+# %%
