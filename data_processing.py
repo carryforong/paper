@@ -3,6 +3,11 @@ import torch
 import cv2
 import PIL
 import numpy as np
+
+#pytorch 数据预处理
+
+
+
 #Compose 这个类是用来管理各个transform的
 #ToTensor  类是实现：Convert a PIL Image or numpy.ndarray to tensor
 #Normalize  类是做数据归一化的

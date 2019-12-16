@@ -1,4 +1,6 @@
-#In[1]
+# 分割图像
+
+
 import glob
 import cv2
 #filepath=glob.glob('1.jpg')
@@ -23,10 +25,6 @@ for i in range (0,36):
 
 
 
-
-
-
-#I[2]
 import PIL.Image as Image
 import os
  
@@ -59,8 +57,3 @@ def image_compose():
 image_compose() #调用函数
 
 
-#In[3]
-print("好好学习")
-
-
-# %%

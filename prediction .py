@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 # 图片指定尺寸
-target_size = (256 , 256) #fixed size for InceptionV3 architecture
+target_size = (224 , 224) #fixed size for InceptionV3 architecture
 # 预测函数
 # 输入：model，图片，目标尺寸
 # 输出：预测predict
@@ -40,7 +40,7 @@ def predict(model, img, target_size):
 # 预测之后画图，这里默认是猫狗，当然可以修改label 
 
 labels = ("coal", "coal and rock","rock")
-model = load_model('E:\\notebook\\revise\\ex_3.hdf5')
+model = load_model('E:\\Exercise\\paper\\9\\googlenet_mode\\trainmodel_googlenet.hdf5')
 # 本地图片
 
 def path_predict(path):
@@ -52,6 +52,8 @@ def path_predict(path):
     m=0
     c=0
     k=0
+    if filecount>500:
+      filecount=500
     for i in range(filecount): 
         #img = Image.open('E:\\notebook\\class\\data\\test\\rock/{}.JPG'.format(i))
         img = Image.open(path+"{}.JPG".format(i))
@@ -67,32 +69,10 @@ def path_predict(path):
             k=k+1
 
         #print ('图片',i,'为',L,'的概率为',n)
-    print("coal is",k,"\n"
-          "coal_rock is",c,"\n"
-          "rock is",m)
+    print("coal is",k,(k/filecount),"\n"
+          "rock is",m,(m/filecount),"\n"
+          "coal_rock is",c,(c/filecount))
     
-path_predict("E:\\notebook\\class\\data\\test\\rock\\")
-path_predict("E:\\notebook\\class\\data\\test\\coal\\")
-path_predict("E:\\notebook\\class\\data\\test\\coal_rock\\")
-
-#In[]
-import numpy as np
-from PIL import Image
-from io import BytesIO
-from keras.preprocessing import image
-from keras.models import load_model
-
-model = load_model('ex_1.hdf5')
-img = Image.open("data\\class\\lable\\coal\\0.jpg")
-target_size = (256 , 256) 
-if img.size != target_size:
-  img = img.resize(target_size)
-
-
-x = image.img_to_array(img)
-x = np.expand_dims(x, axis=0)
-preds = model.predict(x)
-print(preds[0])
-
-
-# %%
+path_predict("E:\\Exercise\\paper\\test\\coal\\")
+path_predict("E:\\Exercise\\paper\\test\\rock\\")
+path_predict("E:\\Exercise\\paper\\test\\coal_rock\\")

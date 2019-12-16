@@ -1,7 +1,7 @@
 import itertools
 import matplotlib.pyplot as plt
 import numpy as np
- 
+ #混淆矩阵绘图
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -40,7 +40,7 @@ def plot_confusion_matrix(cm, classes,
     plt.show()
  
 NET = np.array([
-    [95, 2, 6 ],
+    [409, 2, 6 ],
     [0, 91, 8 ],
     [5, 7, 86 ],
 ])
